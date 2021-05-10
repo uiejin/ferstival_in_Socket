@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Festival_In</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, shrink-to-fit=no user-scalable=0">
+
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css')}}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/magnific-popup.css')}}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/jquery-ui.css')}}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/owl.carousel.min.css')}}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/owl.theme.default.min.css')}}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap-datepicker.css')}}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/animate.css')}}">
+
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/aos.css')}}">
+
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/flaticon.css')}}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/icomoon.css')}}">
+
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/views/style.css')}}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/views/main.css')}}">
+
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/views/index.css')}}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/views/read.css')}}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/views/login.css')}}">
+
+
+</head>
+<body><div class="site-wrap">
+
+    <div class="site-mobile-menu">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+          <span class="icon-settings js-menu-toggle"></span>
+          <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div> <!-- .site-mobile-menu -->
+
+
+
+    <div class="site-navbar-wrap js-site-navbar bg-white">
+
+        <div class="container">
+          <div class="site-navbar bg-light">
+            <div class="py-1">
+              <div class="row align-items-center">
+                <div class="col-2">
+                  <div class="d-inline-block  ml-md-0 mr-auto py-3"><a href="#"
+                    class="site-menu-toggle js-menu-toggle"><span class="icon-arrow_back h3" id="nav-back"></span></a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+  <div class="site-blocks-cover overlay" id="title_img" style="background-image: url('/static/image/bankok.jpg');background-position: 50%;" data-aos="fade" data-stellar-background-ratio="0.5">
+      <div class="container">
+        <div class="row align-items-center justify-content-center">
+          <div class="col-md-12 text-center" data-aos="fade">
+            <h1 class="mb-4">로그인</h1>
+            <div class="col-12"><img src="{{ url_for('static', filename='image/login/kakao_account_login_btn_medium_narrow.png') }}" id="kakaoBtn"></div>
+
+</div>
+
+        </div>
+      </div>
+    </div>
+
+</body>
+
+
+<script src="{{ url_for('static',filename='js/jquery.min.js')}}"></script>
+<script src="{{ url_for('static',filename='js/bootstrap.min.js')}}"></script>
+<script src="{{ url_for('static',filename='js/lib/jquery-migrate-3.0.1.min.js')}}"></script>
+<script src="{{ url_for('static',filename='js/lib/jquery-ui.js')}}"></script>
+<script src="{{ url_for('static',filename='js/lib/popper.min.js')}}"></script>
+<script src="{{ url_for('static',filename='js/lib/owl.carousel.min.js')}}"></script>
+<script src="{{ url_for('static',filename='js/lib/jquery.stellar.min.js')}}"></script>
+<script src="{{ url_for('static',filename='js/lib/jquery.magnific-popup.min.js')}}"></script>
+<script src="{{ url_for('static',filename='js/lib/bootstrap-datepicker.min.js')}}"></script>
+<script src="{{ url_for('static',filename='js/lib/aos.js')}}"></script>
+
+<script src="{{ url_for('static',filename='js/lib/mediaelement-and-player.min.js')}}"></script>
+
+<script src="{{ url_for('static',filename='js/views/main.js')}}"></script>
+<script src="{{ url_for('static',filename='js/views/nav/nav.js')}}"></script>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+
+    var loginstatus = "<%=loginstatus%>";
+
+    if(loginstatus == "true"){
+        location.replace("/");
+    }
+
+    $("#kakaoBtn").click(function(){
+      location.replace("https://kauth.kakao.com/oauth/authorize?client_id=ce92142c3343a4a4157d4efc0ef10fdc&redirect_uri=http://18.223.16.135:5000/oauth&response_type=code");
+    })
+
+
+
+
+  });
+</script>
+
+</html>

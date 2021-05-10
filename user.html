@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Festival_In</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, shrink-to-fit=no user-scalable=0">
+
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css')}}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/magnific-popup.css')}}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/jquery-ui.css')}}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/owl.carousel.min.css')}}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/owl.theme.default.min.css')}}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap-datepicker.css')}}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/animate.css')}}">
+
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/aos.css')}}">
+
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/flaticon.css')}}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/icomoon.css')}}">
+
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/views/style.css')}}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/views/main.css')}}">
+
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/views/noncover.css')}}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/views/myplan.css')}}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/views/read.css')}}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/views/profile.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/views/board.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/views/search.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/views/calendar.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/views/mytour.css')}}">
+
+</head>
+<body>
+<div class="site-wrap">
+
+    <div class="site-mobile-menu">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+          <span class="icon-settings js-menu-toggle"></span>
+          <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div> <!-- .site-mobile-menu -->
+
+<!--상단바-->
+    <div class="site-navbar-wrap js-site-navbar bg-white">
+
+      <div class="container">
+        <div class="site-navbar bg-light">
+          <div class="py-1">
+            <div class="row align-items-center" id ="site-navbar-line">
+              <div class="col-2">
+                <h2 class="mb-0 site-logo"></h2><a id="nav-title">{{userList[0]}} 님 정보</a></h2>
+              </div>
+              <div class="col-10">
+                <nav class="site-navigation text-right" role="navigation">
+                  <div class="container">
+                    <!-- d-lg-none -->
+                    <div class="d-inline-block  ml-md-0 mr-auto py-3"><a href="#"
+                        class="site-menu-toggle js-menu-toggle"><span class="icon-menu h3"></span></a></div>
+                    <!-- d-lg-block -->
+                    <ul class="site-menu js-clone-nav d-none" id="nav">
+
+                    </ul>
+                  </div>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<!--커버에 들어갈 버튼 및 텍스트  -->
+
+<div class="site-section bg-light">
+    <div class="container" id="readForm">
+      <div class="row" id="readRow">
+        <div id="read-form" class="col-lg-12">
+            <div class="col-md-12 text-center">
+                <img src="" class="rounded-circle" id="profileImage">
+                <h1 class="mb-4" id="title_subject">{{userList[0]}}</h1>
+              </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+<!--모임글  -->
+<div class="site-section bg-light col-md-12" id="nowtext">
+  <div class="container" id=boardForm>
+    <div class="row col-md-12" id="post">
+      <div>
+        <a class="text-uppercase boardText">스크랩한 행사</a>
+      </div>
+         <div class="row col-md-12" id="post">
+
+
+<!--게시판 커스텀 -->
+      <div class= "ajaxboardForm" id="nowForm">
+      </div>
+         </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+</body>
+
+<script src="{{ url_for('static',filename='js/jquery.min.js')}}"></script>
+<script src="{{ url_for('static',filename='js/bootstrap.min.js')}}"></script>
+<script src="{{ url_for('static',filename='js/lib/jquery-migrate-3.0.1.min.js')}}"></script>
+<script src="{{ url_for('static',filename='js/lib/jquery-ui.js')}}"></script>
+<script src="{{ url_for('static',filename='js/lib/popper.min.js')}}"></script>
+<script src="{{ url_for('static',filename='js/lib/owl.carousel.min.js')}}"></script>
+<script src="{{ url_for('static',filename='js/lib/jquery.stellar.min.js')}}"></script>
+<script src="{{ url_for('static',filename='js/lib/jquery.magnific-popup.min.js')}}"></script>
+<script src="{{ url_for('static',filename='js/lib/bootstrap-datepicker.min.js')}}"></script>
+<script src="{{ url_for('static',filename='js/lib/aos.js')}}"></script>
+
+<script src="{{ url_for('static',filename='js/lib/mediaelement-and-player.min.js')}}"></script>
+
+<script src="{{ url_for('static',filename='js/views/main.js')}}"></script>
+<script src="{{ url_for('static',filename='js/views/nav/nav.js')}}"></script>
+<script type="text/javascript">
+  $(document).ready( function() {
+
+      $("#nav").load("static/html/nav_nologin.html");
+      var imgsrc = "{{userList[1]}}";
+      $("#profileImage").attr("src", imgsrc);
+      var userid = "{{userList[2]}}";
+
+      $.ajax({
+                url: "/getAllScrap",
+                data: {id : userid},
+                dataType : "json",
+                type: "get",
+                success: function (data) {
+
+                    $.each(data,
+                        function(index,item) {
+                        if(item.IMG == null || item.IMG == "")
+                            item.IMG = 'https://static.thenounproject.com/png/220984-200.png';
+
+                        item.IMG.onload = function() {
+}
+
+                            var windowWidth = $(window).width();
+                            if (windowWidth <= 720) {
+
+                                $("#nowForm").append(
+                                    "<div class=\"col-md-6 col-lg-4 mb-4 cols-" + index + "\">" + "<div class=\"speaker text-left\">"
+                                    + "<a href=\"" + "./post?no=" + item.CONTENT_ID + "\" class=\"d-block mb-3 thumbnail\">" + "<img src=\""
+                                    + item.IMG + "\" alt=\"Image\" class=\"img-fluid1\">" + "</a><h3 class=\"heading mb-0\">"
+                                    + "<a href=\"" + "./post?no=" + item.CONTENT_ID + "\"><span>" + item.TITLE
+                                    + "</span></a></h3>" + "<p>" + item.START_DATE + " ~ " + item.END_DATE
+                                    + "</p>" + "<p id=\"status-event col-" + index + "\">" + "</div></div></div>");
+                            } else {
+                                $("#nowForm").append(
+                                    "<div class=\"col-md-6 col-lg-4 mb-4 cols-" + index + "\">" + "<div class=\"speaker text-left\">"
+                                    + "<a href=\"" + "./post?no=" + item.CONTENT_ID +"\" class=\"d-block mb-3 thumbnail\">" + "<img src=\""
+                                    + item.IMG + "\" alt=\"Image\" class=\"img-fluid\">" + "</a><h3 class=\"heading mb-0\">"
+                                    + "<a href=\"" + "./post?no=" + item.CONTENT_ID + "\"><span>" +  item.TITLE
+                                    + "</span></a></h3>" + "<p>" + item.START_DATE + " ~ " + item.END_DATE
+                                    + "</p>" + "<p id=\"status-event col-" + index  + "\">" + "</div></div></div>");
+                            }
+
+                            var startDatereplace = item.START_DATE.toString().replace(/(\d{4})(\d{2})(\d{2})/g, '$1-$2-$3');
+                            startDate = new Date(
+                                startDatereplace);
+
+                            var endDatereplace = item.END_DATE.toString().replace(/(\d{4})(\d{2})(\d{2})/g, '$1-$2-$3');
+                            endDate = new Date(
+                                endDatereplace);
+
+                            var statusEvent = document
+                                .getElementById("status-event col-"
+                                    + index);
+                            statusEvent.style.color = "whitesmoke";
+                            statusEvent.style.display = "table-row-group";
+                            statusEvent.style.position = "absolute";
+                            statusEvent.style.top = "0px";
+                            statusEvent.style.padding = "5px";
+
+                            var today = new Date();
+
+                            today.setHours(0,0,0,0);
+                            startDate.setHours(0,0,0,0);
+                            endDate.setHours(0,0,0,0);
+
+                            if (today
+                                    .getTime() >= startDate
+                                    .getTime()
+                                && today
+                                    .getTime() <= endDate
+                                    .getTime()) {
+                                statusEvent.innerHTML = "진행중";
+                                statusEvent.style.background = "#f23a2e";
+                                statusEvent.style.borderColor = "#f23a2e";
+                            } else if (today
+                                .getTime() < startDate
+                                .getTime()) {
+                                statusEvent.innerHTML = "시작예정";
+                                statusEvent.style.background = 'midnightblue';
+                                statusEvent.style.borderColor = 'midnightblue';
+                            } else if (today
+                                .getTime() > endDate
+                                .getTime()) {
+                                statusEvent.innerHTML = "행사종료";
+                                statusEvent.style.background = '#212529';
+                                statusEvent.style.borderColor = '#212529';
+                            }
+                        });
+                    }, beforeSend: function () {
+                                                    $('.spinner-border').removeClass(
+                                                        'display-none');
+                                                    $('.wrap-loading').removeClass(
+                                                        'display-none');
+                                                },
+                                                complete: function () {
+                                                    $('.spinner-border').addClass(
+                                                        'display-none');
+                                                    $('.wrap-loading').addClass('display-none');
+                                                }
+                                            });
+  });
+</script>
+</html>

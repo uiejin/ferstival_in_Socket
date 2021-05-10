@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Festival_In</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no user-scalable=0">
+
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/magnific-popup.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/jquery-ui.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/owl.theme.default.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap-datepicker.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/animate.css')}}">
+
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/aos.css')}}">
+
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/flaticon.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/icomoon.css')}}">
+
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/views/style.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/views/main.css')}}">
+
+
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/views/noncover.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/views/writepost.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/views/search.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/views/calendar.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/views/mytour.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/views/myplan.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/views/board.css')}}">
+
+
+
+
+</head>
+<body>
+
+<div class="site-wrap">
+
+    <div class="site-mobile-menu">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close mt-3">
+                <span class="icon-settings js-menu-toggle"></span>
+                <span class="icon-close2 js-menu-toggle"></span>
+            </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div> <!-- .site-mobile-menu -->
+
+    <!--상단바-->
+    <div class="site-navbar-wrap js-site-navbar bg-white">
+
+        <div class="container">
+            <div class="site-navbar bg-light">
+                <div class="py-1">
+                    <div class="row align-items-center" id="site-navbar-line">
+                        <div class="col-2">
+                            <h2 class="mb-0 site-logo"></h2><a id="nav-title">행사 검색</a></h2>
+                        </div>
+                        <div class="col-10">
+                            <nav class="site-navigation text-right" role="navigation">
+                                <div class="container">
+                                    <!-- d-lg-none -->
+                                    <div class="d-inline-block  ml-md-0 mr-auto py-3"><a href="#"
+                                                                                         class="site-menu-toggle js-menu-toggle"><span class="icon-menu h3"></span></a></div>
+                                    <!-- d-lg-block -->
+                                    <ul class="site-menu js-clone-nav d-none" id="nav">
+                                    </ul>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="site-section bg-light">
+    <div class="container" id="writeForm">
+        <div class="row" id="writeRow">
+            <div id="write-form" class="col-lg-12">
+                <div class="form-group">
+                    <!--자동수락 선택 버튼-->
+
+                    <!--입력 폼-->
+
+
+                    <hr>
+                    <div class="form-group" id="write-form-tag">
+                        <div class="col-12" id="writeItem">
+                            <div class="writeDiv1">지역</div>
+                            <div class="writeDiv2" id="locationText">지역을 선택하세요</div>
+                        </div>
+                        <hr>
+                        <div class="col-12" id="writeItem">
+                            <div class="writeDiv1">카테고리</div>
+                            <div class="writeDiv2" id="cateText">행사 주제를 선택하세요</div>
+                        </div>
+                        <hr>
+                        <div class="col-12" id="writeItem">
+                            <div class="writeDiv1">시작일</div>
+                            <div class="writeDiv2"><input type="text" id="selectdateText1" class="writeInput"></div>
+                        </div>
+                        <hr>
+                        <div class="col-12" id="writeItem">
+                            <div class="writeDiv1">종료일</div>
+                            <div class="writeDiv2"><input type="text" id="selectdateText2" class="writeInput"></div>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+                <a id="chart-button" class="btn btn-primary px-4 py-2">차트 확인</a>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="site-section col-md-12" id="searchForm">
+        <div class="container" id=boardForm>
+            <div class="row col-md-12" id="post">
+
+                <!--게시판 커스텀 -->
+                <div class = "row ajaxboardForm" id = "newboardform">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="s_id" data-prodnumber="${sessionScope.id}" />
+    <div id="s_auth" data-prodnumber="${sessionScope.authority}" />
+
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle">지역을 선택하세요</h5>
+                <button type="button" class="close" id="close_popup" data-dimiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="row form-group" id="modal-form">
+                <div class="form-group" id="modal-info">
+                </div>
+                <div class="col-md-12">
+                    <div id="areaForm"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" id="cate-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle2">행사 주제를 선택하세요</h5>
+                <button type="button" class="close" id="close_popup2" data-dimiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="row form-group" id="modal-form">
+                <div class="form-group" id="modal-info">
+                </div>
+                <div class="col-md-12">
+                    <div id="cateForm"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" id="cate-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle2">행사 상황 차트</h5>
+                <button type="button" class="close" id="close_popup3" data-dimiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="row form-group" id="modal-form">
+                <div class="form-group" id="modal-info">
+                </div>
+                <div class="col-md-12">
+                    <div id="chartForm"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+
+<script src="{{ url_for('static',filename='js/jquery.min.js')}}"></script>
+<script src="{{ url_for('static',filename='js/bootstrap.min.js')}}"></script>
+<script src="{{ url_for('static',filename='js/lib/jquery-migrate-3.0.1.min.js')}}"></script>
+<script src="{{ url_for('static',filename='js/lib/jquery-ui.js')}}"></script>
+<script src="{{ url_for('static',filename='js/lib/popper.min.js')}}"></script>
+<script src="{{ url_for('static',filename='js/lib/owl.carousel.min.js')}}"></script>
+<script src="{{ url_for('static',filename='js/lib/jquery.stellar.min.js')}}"></script>
+<script src="{{ url_for('static',filename='js/lib/jquery.magnific-popup.min.js')}}"></script>
+<script src="{{ url_for('static',filename='js/lib/bootstrap-datepicker.min.js')}}"></script>
+<script src="{{ url_for('static',filename='js/lib/aos.js')}}"></script>
+
+<script src="{{ url_for('static',filename='js/lib/mediaelement-and-player.min.js')}}"></script>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="{{ url_for('static',filename='js/views/main.js')}}"></script>
+<script src="{{ url_for('static',filename='js/views/nav/nav.js')}}"></script>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#nav").load("static/html/nav_nologin.html");
+        var loginstatus = "<%=loginstatus%>";
+        var userId = "<%=userId%>";
+
+        var country =['서울', '인천','대전','대구','광주','부산','울산','세종특별자치시',
+            '경기도','강원도','충청북도','충청남도','경상북도','경상남도','전라북도','전라남도','제주도'];
+
+        var countryCode = [1,2,3,4,5,6,7,8,31,32,33,34,35,36,37,38,39];
+        var countryImg = [
+            'https://korean.visitseoul.net/comm/getImage?srvcId=MEDIA&parentSn=24068&fileTy=MEDIA&fileNo=1',
+            'https://www.incheontoday.com/news/photo/201810/112061_102435_4741.jpg',
+            'https://www.daejeon.go.kr/images/tou/2017images/main/visual05.jpg',
+            'https://www.daeguview.com/DATA/photo/thumb_20191115041052.jpg',
+            'https://lh3.googleusercontent.com/proxy/axnWqdFdC5_7904KWk5wodp-Nt8v_r4y9W-AATTfqF70FvQ_phN-_QeD-cUONzPMVbFqd_AwF4a2Kf6n5_kmEjg1iGruhVqNYZZuXRVKj-VG07Kb3yvFKCjqlGZ3noGJ1g',
+            'https://www.opinionnews.co.kr/news/photo/201905/18042_13312_1145.jpg',
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/%ED%83%9C%ED%99%94%EA%B0%95%2C%EC%9A%B8%EC%82%B0.jpg/400px-%ED%83%9C%ED%99%94%EA%B0%95%2C%EC%9A%B8%EC%82%B0.jpg',
+            'https://lh3.googleusercontent.com/proxy/n5oFE72S_O0P-tE_Xsk4KHqDOXBfUPtMQu5Hcm-kG3ejdFmDxoE9oZjW6iKX0Ve3UpSapiQw7RCa9YmPxogyxFg6Y6MzQEIPZqUv9-9f1VqqRlvSwpA6kYs',
+            'https://lh3.googleusercontent.com/proxy/_aVGL__3zNdHTG4BP77tSVKe8kZrUAqCjltjYD1FEiFmN3AOajVRqXQWOTGhXQRrekwVXfJYMZ4-nuKCq8uZz5CudOtRtMxO9s7qPDw8WfwxY0A',
+            'https://lh3.googleusercontent.com/proxy/rChBBzW_Q0xq4zstqAuO_Hud2CXOEVhC-z8Lbpn2pgrP35EZbsdt_qr1oc1Lx8ZW04-2GnAbahmSqg1k-cY34BBFkAUNOjfPd1q7UlQ4n7DTxfQ',
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTTJZM2w4rXVx0KmZAHko4XdJB_m8l24rJqiH0jWPex_6B5HUe_&usqp=CAU',
+            'https://lh3.googleusercontent.com/proxy/dU5oYYbW-4XxQp0OKZ_p3G03gyvTRNVehdqFBJikO0S5R6MHWPt7ezUXoDfxc2oMZAuXl_B_CQH4LDEMFkEIDH6NPX0yBsEr6cfh62_mlKXYt2tcqVw',
+            'https://tour.jecheon.go.kr/DATA/clturCntnts/20151124050016192zJX.jpg',
+            'https://t1.daumcdn.net/cfile/tistory/99AB47465B18CD5C31',
+            'https://post-phinf.pstatic.net/MjAxNzAzMjBfMjUx/MDAxNDg5OTc4ODgxMjMw.1l4jYDkdtO0khq2E1rk090hYbB1k4WycP5MR3elZ3kAg.yBnAZJ_ZDVeWqvk2nwYgjnalSJjNac8Qy60irKoF45Eg.JPEG/1.jpg?type=w1200',
+            'https://img.hani.co.kr/imgdb/resize/2018/1203/00503709_20181203.JPG',
+            'https://t1.daumcdn.net/thumb/R720x0/?fname=http://t1.daumcdn.net/brunch/service/user/1jPF/image/6dTBQAAJW6QLbLUaneCZWL3Vhf4.jpg'
+        ];
+
+        var categoryList = ['문화관광축제','일반축제','전통공연','연극','뮤지컬','오페라'
+            ,'전시회','박람회','컨벤션','무용','클래식음악회','대중콘서트','영화','스포츠경기','기타행사'];
+        var cateCode = ['A02070100','A02070200','A02080100','A02080200',
+            'A02080300','A02080400','A02080500','A02080600','A02080700',
+            'A02080800','A02080900','A02081000','A02081100','A02081200','A02081300'];
+        var cateImg = ['https://lh3.googleusercontent.com/proxy/lcqudslxe3f3skVAygazKq7Aj8T3ecNXujuVvOjOpPxpvcO1lPZnWZzgqkuYEXr-geFOFt9eOff9aJbClLKioTQhJdwzrJjuxLPdSJrKGSi_2g5lQx4Bp94',
+            'https://s3-ap-northeast-2.amazonaws.com/www.sktinsight.com/wp-content/uploads/2017/09/2017_%EA%B0%80%EC%9D%84%EC%B6%95%EC%A0%9C_6.jpg',
+            'https://www.seulstorytour.com/wp-content/uploads/2017/06/Teatro-Jeongdong.jpg',
+            'https://img.khan.co.kr/news/2017/07/24/l_2017072501003129400254451.jpg',
+            'https://t1.daumcdn.net/liveboard/fanzeel/1175321b1ccd4964b10d0ffebb56d464.JPG',
+            'https://post-phinf.pstatic.net/MjAxOTA4MTBfMTcg/MDAxNTY1NDE2MDIwODMz.lzPpYl0A7Dduj8YKtqYmVtrUi5IUU7KIXODkr1ncaW4g.GIsi10eM7vS11JEJanF0ofMStX1UErBedbokzq3mTzEg.PNG/image.png?type=w1200',
+            'https://www.itnk.co.kr/news/photo/201903/59956_21022_2513.jpg',
+            'https://platum.kr/wp-content/uploads/2017/07/1-6.jpg',
+            'https://www.nexteconomy.co.kr/news/photo/201810/11744_19490_1359.jpg',
+            'https://img1.yna.co.kr/etc/inner/KR/2012/05/31/AKR20120531001900005_01_i_P4.jpg',
+            'https://lh3.googleusercontent.com/proxy/qTSdWyv1cC62xJgZVhlUK-aSTV3jL8PGKY_wjP2pkOP4qdasTutHUsZE-oj2e6Fk3PFFz3cW4XngtAB937N2VpT7xN9RsixCkAslRChsIEjgra8uHNH_dWTbFWnBC3VGiZLvESyOnAnFwmJT4Ae-XmM9KfOO_nSW0be6Ddz-_o-HEEGWmAfGuKKPOp7Dvnf7nZB1Y5k',
+            'https://lh3.googleusercontent.com/proxy/kbSsJXW7R4dMc3Zwn8ty8dzW_fLpLaHMKfjHgmuVhD19RytEM98vUPkfxlcxHcEapuKiXr1h2WQMluY0DbqLWN7t8GCUC58orVJ3clvDF99WcOTBDtII2XF26myc4kl4Fd3mQFNMf7MQ-vysHL0J',
+            'https://images.christiantoday.co.kr/data/images/full/318761/image.jpg?w=654',
+            'https://img1.daumcdn.net/thumb/R720x0.q80/?scode=mtistory2&fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F2111F03557D77E492E4EA8',
+            'https://lh3.googleusercontent.com/proxy/GTDQKYZvlM5gvPd-YTETUF-uddhCyNeu-EcWFAjFJhaVGw3fGawb3FvHunY3slV0ThuVGRqzGRJg-t2Y13B84-FHa965NVskcAVKRJ7SFWgUWnhsDN4'];
+
+        var countrycode = null;
+        var areacode = null;
+        var category = null;
+        var categorycode = null;
+
+        var endcount = 0;
+        var sooncount = 0;
+        var nowcount = 0;
+
+
+        var today = new Date();
+
+
+        var getData = new Array();
+
+
+        var count = 0;
+
+
+
+        var date = new Date();
+        date.setDate(date.getDate()-1);
+
+        if(loginstatus == "true"){
+
+            $("#navProfileName").text("<%=username%>");
+            $("#profileImageNav").attr("src", "<%=userImg%>");
+        }else{
+            $("#nav").load("/html/nav_nologin.html");
+            /*  var loginMessage = "<%=loginMessage%>";
+              alert(loginMessage);
+              history.back();
+            */}
+
+
+        $("#close_popup").click(function() {
+
+            $('#myModal').modal('hide');
+        });
+
+        $("#close_popup2").click(function() {
+
+            $('#myModal2').modal('hide');
+        });
+        $("#close_popup3").click(function() {
+
+            $('#myModal3').modal('hide');
+        });
+
+
+        for(var i=0;i<country.length;i++){
+            var addarea = "<div id=\"locationSectionFirst\">" +
+                "<button class=\"btn btn-primary locationBtn\" type=\"submit\" id=\"locationBtn\" value=\""+countryCode[i]+"\" style=\"background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("+countryImg[i]+");\">"
+                +country[i] +"</button></div>";
+
+            $("#areaForm").append(addarea);
+
+
+        }
+
+        $("button[id^='locationBtn']").click(function(){
+            $('#locationText').text($(this).text());
+            areacode = $(this).val();
+            countrycode = $(this).val();
+            $('#myModal').modal('hide');
+            searchParty();
+        });
+
+        for(var i=0;i<categoryList.length;i++) {
+            var cate = "<div class=class=\"col-md-6\" id=\"catesection\">" +
+                "<button class=\"btn btn-primary locationBtn\" type=\"submit\" id=\"cateBtn\" value=\""+(i)+"\" style=\"background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(" + cateImg[i] + ");\">"
+                + categoryList[i] + "</button></div>";
+
+            $("#cateForm").append(cate);
+        }
+
+        $("button[id^='cateBtn']").click(function(){
+            $('#cateText').text($(this).text());
+            $('#myModal2').modal('hide');
+            category = $(this).text();
+            categorycode = cateCode[$(this).val()];
+            searchParty();
+        });
+
+
+        $("#locationText").click(function(){
+            $('#myModal').modal('show');
+        });
+        $("#cateText").click(function(){
+            $('#myModal2').modal('show');
+        });
+        $("#chart-button").click(function(){
+            $('#myModal3').modal('show');
+        });
+
+        $("#selectdateText1").trigger("click");$("#selectdateText2").trigger("click");
+
+        $('#selectdateText1').click(function(){
+            $("#nav-title").text("시작날짜를 선택하세요");
+            $('#selectdateText1').datepicker({
+                format: "yyyymmdd",
+                autoclose: true,
+                onSelect: function (dateText, inst) {
+                }
+            }).datepicker('show').on('hide', function(ev) { // <-----------
+                $("#nav-title").text("종료날짜를 선택하세요");
+                $("#selectdateText2").trigger("click");
+
+            });
+
+        });
+
+        $('#selectdateText2').click(function(){
+            $("#nav-title").text("종료날짜를 선택하세요");
+            $('#selectdateText2').datepicker({
+                format: "yyyymmdd",
+                autoclose: true,
+                onSelect: function (dateText, inst) {
+                }
+            }).datepicker('show').datepicker('show').on('hide', function(ev) { // <-----------
+                $("#nav-title").text("행사 검색");
+                if($("#selectdateText1").val() != ""){
+                    searchParty();
+                }
+
+            });
+
+        });
+
+        var oldVal = $("#searchform").val();
+        $("#searchform").on("propertychange change keyup paste input", function() {
+            var currentVal = $(this).val();
+            if(currentVal == oldVal) {
+                return;
+            }
+
+            oldVal = currentVal;
+            searchParty();
+        });
+
+        function searchParty(){
+
+            $("#newboardform *").remove();
+            nowcount = 0;
+            endcount = 0;
+            sooncount = 0;
+            var category2 = 'A0208'
+
+            if(categorycode == 'A02070100' || categorycode == 'A02070200'){
+                category2 = 'A0207'
+            }
+            var allData = {"areacode" : areacode,
+                "category" : categorycode,
+                "category2" : category2,
+                "startdate" : $("#selectdateText1").val(),
+                "enddate" : $("#selectdateText2").val(),
+                "text" : oldVal,
+            }
+
+            $.ajax({
+                url: "/searchData",
+                data: allData,
+                dataType : "json",
+                type: "get",
+                success: function (data) {
+
+                    $("#chart-button").css("display", "block");
+
+                    $.each(data.response.body.items.item,
+                        function(index,item) {
+                        if(item.firstimage == null || item.firstimage == "")
+                            item.firstimage = 'https://static.thenounproject.com/png/220984-200.png';
+
+                        item.firstimage.onload = function() {
+                             alert(this.width + 'x' + this.height);
+}
+
+                            var windowWidth = $(window).width();
+                            if (windowWidth <= 720) {
+
+                                $("#newboardform").append(
+                                    "<div class=\"col-md-6 col-lg-4 mb-4 cols-" + index + "\">" + "<div class=\"speaker text-left\">"
+                                    + "<a href=\"" + "./post?no=" + item.contentid + "\" class=\"d-block mb-3 thumbnail\">" + "<img src=\""
+                                    + item.firstimage + "\" alt=\"Image\" class=\"img-fluid1\">" + "</a><h3 class=\"heading mb-0\">"
+                                    + "<a href=\"" + "./post?no=" + item.contentid + "\"><span>" + item.title
+                                    + "</span></a></h3>" + "<p>" + item.eventstartdate + " ~ " + item.eventenddate
+                                    + "</p>" + "<p id=\"status-event col-" + index + "\">" + "</div></div></div>");
+                            } else {
+                                $("#newboardform").append(
+                                    "<div class=\"col-md-6 col-lg-4 mb-4 cols-" + index + "\">" + "<div class=\"speaker text-left\">"
+                                    + "<a href=\"" + "./post?no=" + item.contentid +"\" class=\"d-block mb-3 thumbnail\">" + "<img src=\""
+                                    + item.firstimage + "\" alt=\"Image\" class=\"img-fluid\">" + "</a><h3 class=\"heading mb-0\">"
+                                    + "<a href=\"" + "./post?no=" + item.contentid + "\"><span>" +  item.title
+                                    + "</span></a></h3>" + "<p>" + item.eventstartdate + " ~ " + item.eventenddate
+                                    + "</p>" + "<p id=\"status-event col-" + index  + "\">" + "</div></div></div>");
+                            }
+
+                            var startDatereplace = item.eventstartdate.toString().replace(/(\d{4})(\d{2})(\d{2})/g, '$1-$2-$3');
+                            startDate = new Date(
+                                startDatereplace);
+
+                            var endDatereplace = item.eventenddate.toString().replace(/(\d{4})(\d{2})(\d{2})/g, '$1-$2-$3');
+                            endDate = new Date(
+                                endDatereplace);
+
+                            var statusEvent = document
+                                .getElementById("status-event col-"
+                                    + index);
+                            statusEvent.style.color = "whitesmoke";
+                            statusEvent.style.display = "table-row-group";
+                            statusEvent.style.position = "absolute";
+                            statusEvent.style.top = "0px";
+                            statusEvent.style.padding = "5px";
+
+                            var today = new Date();
+
+                            today.setHours(0,0,0,0);
+                            startDate.setHours(0,0,0,0);
+                            endDate.setHours(0,0,0,0);
+
+                            if (today
+                                    .getTime() >= startDate
+                                    .getTime()
+                                && today
+                                    .getTime() <= endDate
+                                    .getTime()) {
+                                statusEvent.innerHTML = "진행중";
+                                statusEvent.style.background = "#f23a2e";
+                                statusEvent.style.borderColor = "#f23a2e";
+                                nowcount++;
+                            } else if (today
+                                .getTime() < startDate
+                                .getTime()) {
+                                statusEvent.innerHTML = "시작예정";
+                                statusEvent.style.background = 'midnightblue';
+                                statusEvent.style.borderColor = 'midnightblue';
+                                sooncount++;
+                            } else if (today
+                                .getTime() > endDate
+                                .getTime()) {
+                                statusEvent.innerHTML = "행사종료";
+                                statusEvent.style.background = '#212529';
+                                statusEvent.style.borderColor = '#212529';
+                                endcount++;
+                            }
+                        });
+
+
+                    google.charts.load("current", {packages:["corechart"]});
+                  google.charts.setOnLoadCallback(drawChart);
+                  function drawChart() {
+                      var data = google.visualization.arrayToDataTable([
+                          ['Task', 'Hours per Day'],
+                          ['진행중', nowcount],
+                          ['시작예정', sooncount],
+                          ['종료', endcount]
+                      ]);
+
+                      var options = {
+                          title: '행사 통계',
+                          pieHole: 0.4,
+                          width: $(window).width(),
+                          height: $(window).height()*0.75
+                      };
+
+                      var chart = new google.visualization.PieChart(document.getElementById('chartForm'));
+                      chart.draw(data, options);
+                  }
+
+                },
+                beforeSend: function () {
+                },
+                complete: function () {
+                }
+            });
+
+        }
+
+
+
+    });
+</script>
+
+
+</html>
