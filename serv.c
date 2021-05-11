@@ -14,7 +14,7 @@
 #include <sys/stat.h>
 #include <sys/socket.h>
 #include <arpa/inet.h>
-
+#include <curl/curl.h>
 
 /*
     @func   assign address to the created socket lsock(sd)
@@ -95,6 +95,42 @@ void handle_500(int asock) {
     @func main http handler; try to open and send requested resource, calls error handler on failure
     @return
 */
+void cgi(char *buf){ //cgi 
+	char *result; //char형식의 변수 선언 
+	char token[]="=&";// char 형식의  변수 선언 
+	int i; //int형 변수 선언 
+	char * areaCode;
+    char * category;//int형변수 n1,n2선언
+    char * category2;
+    char * startdate;//int형변수 n1,n2선언 
+    char * enddate;//int형변수 n1,n2선언 
+
+	int sum=0;//int형 변수 sum선언 
+	result=strtok(buf,token); // =이전의 문자열 자르기
+	result=strtok(NULL,token); // =,&사이의 NNN 잘라서 저장
+    areaCode = result;
+	//n1=atoi(result); //result를 정수형으로 n1에 저장 
+    //=& error!
+	strtok(NULL,token); // &,=사이의 to 자르기
+	result=strtok(NULL,token);// &,=사이의 MMM 잘라서 저장
+	//n2=atoi(result);//result를 정수형으로 n2에 저장 
+    category = result;
+    strtok(NULL,token); // &,=사이의 to 자르기
+	result=strtok(NULL,token);// &,=사이의 MMM 잘라서 저장
+    category2 = result;
+    strtok(NULL,token); // &,=사이의 to 자르기
+	result=strtok(NULL,token);// &,=사이의 MMM 잘라서 저장
+    startdate = result;
+    strtok(NULL,token); // &,=사이의 to 자르기
+	result=strtok(NULL,token);// &,=사이의 MMM 잘라서 저장
+    enddate = result;
+	printf("**** areaCode : %s\n",areaCode);
+    printf("**** category : %s\n",category);
+	printf("**** category2 : %s\n",category2);
+    printf("**** startdate : %s\n",startdate);
+	printf("**** enddate : %s\n",enddate);
+}
+
 void http_handler(int asock) {
     char header[BUF_SIZE];
     char buf[BUF_SIZE];
@@ -119,7 +155,12 @@ void http_handler(int asock) {
 
     strcpy(safe_uri, uri);
     if (!strcmp(safe_uri, "/")) strcpy(safe_uri, "/index2.html");
-    
+    else if (!strcmp(safe_uri, "/post")) strcpy(safe_uri, "/post.html");
+    else if (!strcmp(safe_uri, "/search")) strcpy(safe_uri, "/search.html");
+    else if(strstr(safe_uri,"searchData?")){
+        cgi(safe_uri);
+        printf("@@@@@@@ hi @@@@@@\n");
+    }
     local_uri = safe_uri + 1;
     if (stat(local_uri, &st) < 0) {
         perror("[WARN] No file found matching URI.\n");
